@@ -1,0 +1,9 @@
+//package com.ss.board.repository;
+//
+//import org.springframework.data.jpa.repository.JpaRepository;
+//
+//import com.ss.board.entity.Board;
+//
+//public interface BoardRepository extends JpaRepository<Board, Long>{
+//	
+//}

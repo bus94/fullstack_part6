@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+body {
+	text-align: center;
+}
+
+header .container {
+	margin: 0 !important;
+	max-width: 100vw !important;
+}
+
+.header_container a{
+	color: white !important;
+}
+
+.main_container {
+	text-align: center;
+}
+
+.radio_container {
+	display: flex;
+	justify-content: center;
+	gap: 5vw;
+}
+
+.input_container {
+	max-width: 750px !important;
+}
+
+.page_container {
+		
+}

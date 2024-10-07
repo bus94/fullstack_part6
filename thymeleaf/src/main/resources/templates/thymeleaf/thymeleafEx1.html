@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8">
+<title>파일명: thymeleafEx1.html</title>
+</head>
+<body>
+	<h1>타임리프 사용법!</h1>
+	<!-- 
+		타임리프 핵심
+		th:XXX가 붙은 부분은 서버 사이드에서 랜더링 되고, 기존의 것을 대체한다.
+		th:XXX가 붙지 않으면 기존 HTML의 요소에 속성값으로 사용이 된다.
+		
+		html을 파일로 직접 열었을 때 th:xxx가 있어도 웹 브라우저는 th:속성을 알지 못한다. 그래서 th문법을 무시한다.
+		
+	 -->
+	 
+	 <h3>텍스트 문법</h3>
+	 <p>태그 안의 속성값으로 변수값을 저장할 때</p>
+	 <p th:text="${username}">유저네임</p>
+	 <br/><br/>
+	 <h3>content에 출력하기</h3>
+	 <p>1.data: [[${data}]]</p>
+	 <p>2.data: [(${data})]</p>
+	 
+	 <!-- 직접적으로 데이터 출력 [[...]]를 사용하면 된다.
+	 주의: th:text와 [[...]] 기본적으로 이스케이프를 제공한다.
+	 
+	 이스케이프
+	 - 웹 브라우저 '<' html 태그의 시작으로 인식한다. 문자로 표현할 수 있는 방법이 필요하다. 이것이 바로 html 엔티티라고 한다. html 엔티티를 변경하는 것!
+	 
+	 th:text, th:utext 차이점!
+	  -->
+</body>
+</html>

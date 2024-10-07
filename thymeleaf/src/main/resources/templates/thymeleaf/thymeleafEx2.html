@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>thymeleafEx2.html</title>
+</head>
+<body>
+	<h1>타임리프 사용법!</h1>
+
+	<p th:text="${num1} + ' + ' + ${num2} + ' = ' + ${num1 + num2}"></p>
+	<p th:text="'이름: ' + ${person.name}"></p>
+	<p th:text="'나이: ' + ${person.age}"></p>
+
+	<!-- 
+	person.name person에 name을 프로퍼티 접근 → person.getName() 호출해서 값 가져옴
+	 -->
+
+	<h3>리스트</h3>
+	<ul>
+		<li th:text="${list[0]}">0</li>
+		<li th:text="${list[1]}">1</li>
+		<li th:text="${list[2]}">2</li>
+	</ul>
+
+	<h3>Map</h3>
+	<ul>
+		<li th:text="${scoremap['익준']}">익준</li>
+		<li th:text="${scoremap['준완']}">준완</li>
+		<li th:text="${scoremap['송화']}">송화</li>
+	</ul>
+
+	<h3>list와 map 합치기!</h3>
+	<ul>
+		<li>리스트 맵 0번째</li>
+		<li th:text="${listmap[0]['A']}"></li>
+		<li th:text="${listmap[0]['B']}"></li>
+		<li th:text="${listmap[0]['C']}"></li>
+	</ul>
+
+	<ul>
+		<li>리스트 맵 1번째</li>
+		<li th:text="${listmap[1]['A2']}"></li>
+		<li th:text="${listmap[1]['B2']}"></li>
+		<li th:text="${listmap[1]['C2']}"></li>
+	</ul>
+	
+	<ul>
+		<li>리스트 맵 Person 객체</li>
+		<li th:text="${listper[0]['강동구']}"></li>
+		<li th:text="${listper[0]['강서구']}"></li>
+		<li th:text="${listper[0]['강남구']}"></li>
+		<li th:text="${listper[0]['강북구']}"></li>
+	</ul>
+	
+	<ul>
+		<li>리스트 맵 Person 객체 이름</li>
+		<li th:text="${listper[0]['강동구'].name}"></li>
+		<li th:text="${listper[0]['강서구'].name}"></li>
+		<li th:text="${listper[0]['강남구'].name}"></li>
+		<li th:text="${listper[0]['강북구'].name}"></li>
+	</ul>
+	
+	<ul>
+		<li>리스트 맵 Person 객체 나이</li>
+		<li th:text="${listper[0]['강동구'].age}"></li>
+		<li th:text="${listper[0]['강서구'].age}"></li>
+		<li th:text="${listper[0]['강남구'].age}"></li>
+		<li th:text="${listper[0]['강북구'].age}"></li>
+	</ul>
+
+</body>
+</html>

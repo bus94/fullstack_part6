@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>chat.html</title>
+<link rel="stylesheet" th:href="@{/css/chat.css}">
+</head>
+<body>
+	<div class="total-container">
+		<header class="header-container"> 📨CHATBOT </header>
+		<div class="inner-container">
+			<div th:each="message:${messageList}">
+				<div class="message-container">
+					<span th:text="${message.msg}">메세지</span>
+				</div>
+			</div>
+		</div>
+		<footer class="footer-container">
+			<div class="total-input">
+			<form>
+				<button class="plusBtn" type="button">➕</button>
+				<input class="input-container" type="text"
+					placeholder="메시지를 입력해 주세요.">
+				<button class="formBtn">🧧</button>
+			</form>
+			</div>
+		</footer>
+	</div>
+</body>
+</html>

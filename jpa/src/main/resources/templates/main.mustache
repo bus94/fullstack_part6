@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member List</title>
+</head>
+<body>
+
+    <h1>Member List</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Created At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#members}}
+            <tr>
+                <td>{{id}}</td>
+                <td>{{name}}</td>
+                <td>{{email}}</td>
+                <td>{{createAt}}</td>
+            </tr>
+            {{/members}}
+        </tbody>
+    </table>
+
+    <div>
+        {{#currentPage}}
+        <a href="/members/page?page={{prevPage}}" {{#isFirst}}style="display:none;"{{/isFirst}}>Previous</a>
+        <a href="/members/page?page={{nextPage}}" {{#isLast}}style="display:none;"{{/isLast}}>Next</a>
+        {{/currentPage}}
+    </div>
+
+</body>
+</html>

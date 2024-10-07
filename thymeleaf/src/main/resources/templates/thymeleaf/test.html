@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>test.html</title>
+</head>
+<body>
+	<h1>실습문제1</h1>
+	<p>컨트롤러에서 직원의 이름을 key</p>
+	<p>나이를 value 지정</p>
+	<p>직원의 나이가 30 이상이면 (성인직원) 문구를 출력 나이가 30미만이면 아무것도 출력 안함</p>
+	<ul>
+		<li th:each="employee:${mapEmp}" th:if="${employee.value >= 30}">
+			[[${employee.key}]]: 성인직원</li>
+	</ul>
+
+	<br />
+	<br />
+
+	<h1>실습문제2</h1>
+	<!-- List<Map<String, Object>>
+		제품에 관련된 클래스를 적용해서
+		map = {'자바의 정석' : 제품관련객체}
+	 -->
+	<p>컨트롤러에서 제품명과 가격, 카테고리를 저장하는 map생성 제품들을 저장하는 List선언 데이터를 출력 하는데 조건
+		book 카테고리 있는 제품은 가격에서 20%할인 가격을 출력하기 (20% 할인됨) (할인 미적용)</p>
+	<div th:each="list:${itemList}">
+		<ul th:each="item:${list}">
+			<li>이름: [[${item.value.name}]]</li>
+			<li th:if="${item.value.category == 'book'}">가격: [[${#numbers.formatInteger(item.value.price * (1 - 0.2), 0)}]]원</li>
+			<li th:unless="${item.value.category == 'book'}">가격: [[${item.value.price}]]원</li>
+			<li>카테고리: [[${item.value.category}]]</li>
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!-- 컨트롤러에서 objList.do -->
+
+{{>./layout/header}}
+
+{{#users}}
+	<ul>
+		<li>{{.}}</li>
+		<li>{{id}}</li>
+		<li>{{email}}</li>
+	</ul>
+{{/users}}
+
+{{>./layout/footer}}

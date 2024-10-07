@@ -1,0 +1,42 @@
+{{>layout/header}}
+
+	<h1>RestController 값</h1>
+	<div id="list">
+		<!-- ajax로 데이터를 불러와서 여기에 표시한다. -->
+	</div>
+	
+	<script>
+		$(document).ready(function() {
+			// 페이지가 로드 될 때 /api/articles로 ajax 요청을 보낸다.
+			$.ajax({
+				url: "/api/articles",
+				method: "GET",
+				success: function(data){
+					console.log("전송 성공!");
+					// 데이터가 성공적으로 받아지면 data에 forEach()문장을 이용해서 하나의 문자로 만든다.
+					console.log(data);
+				
+					var articleHtml = '';
+					data.forEach(function(a) {
+						articleHtml += '<div>';
+						articleHtml += '<h3>' + a.title + '</h3>';
+						articleHtml += '<p>' + a.content + '</p>';
+						articleHtml += '</div>';
+					});
+					
+					$('#list').html(articleHtml);
+				},
+				error: function(error){
+					console.log("전송 실패!");
+				}
+			});
+		});
+	</script>
+	
+{{>layout/footer}}
+
+<!-- 
+	css 파일 포함해서 배경색을 지정
+	부트 스트랩 사용하고 싶을 경우 부트스트랩 추가
+	index.mustache include 해서 작용하기
+-->

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>파일명:form2.html</title>
+</head>
+<body>
+	<!-- th:object 폼데이터를 서버의 객체와 연결하는 역할 
+		폼의 입력 필드에서 서버에 전달된 객체
+		사용자가 입력한 데이터를 바로 객체에 저장할 수 있도록 사용하는 것
+		
+		실행순서
+		1. 객체 생성 및 전달
+			spring 컨트롤러에서 dto 객체를 생성하고 모델에 추가한다. 그 후에 타임리프 th:object 속성에 dto 객체 전달 된다.
+		2. 전달 받은 객체가 어떤 input 타입과 매핑해서 데이터를 저장할지 작성
+		
+		name 속성
+			폼 데이터를 서버로 전송할 때 서버에서 수동으로 값을 읽어서 처리를 해야된다.
+			
+		field 속성
+			서버의 객체 필드와 자동으로 연결해서 폼 데이터를 쉽게 처리할 수 있다.
+		바인딩
+		- 두 개체간 데이터나 상태를 연결하는 것
+		- 타임피르나 springMVC 같은 프레임워크 바인딩 주로 폼 입력 필드와 서버 측 객체(모델)의 필드를 연결하여 데이터를 주고 받는다.
+	-->
+	<h1>form태그 타임리프로 변경하기</h1>
+	
+	<form action="#" th:action="@{/view2}" method="POST" th:object="${bookDTO}">
+		<label>책 제목</label> <input type="text" th:field="*{title}"> <label>저자</label> <input
+			type="text" th:field="*{author}"> <label>출판사</label> <input type="text" th:field="*{publisher}"> <label>출판일</label>
+		<input type="text" th:field="*{publisherDate}"> <input type="submit" value="전송"> <input
+			type="reset" value="초기화">
+	</form>
+</body>
+</html>

@@ -1,0 +1,39 @@
+@charset "UTF-8";
+body {font-family: "나눔고딕";}
+div, section, header, aside, footer {padding: 5px;}
+
+/*** 전체 컨테이너 ***/
+div#container {}
+
+/*** header ***/
+header div #header-contaner {height: 100px;}
+header div #header-container h2 {margin: 30px 10px 0px 10px;}
+
+/*** content ***/
+section #content {min-height: 300px;}
+
+/*** footer ***/
+footer {
+	background-color: #f8f9fa;
+	background-clip: content-box;
+	clear: both;
+	height: 95px;
+	text-align: center;
+}
+
+footer p {
+	margin-top: 30px;
+}
+
+div #demo-container {
+	width: 60%;
+	padding: 15px;
+	margin: 0 auto;
+	border: 1px solid lightgray;
+	border-radius: 10px;
+}
+
+div container-comment {
+	border: 1px solid lightgray;
+	border-radius: 10px;
+}

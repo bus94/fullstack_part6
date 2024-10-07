@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<th:block th:replace="/layout/header1 :: headerLayout"></th:block>
+<body>
+	<!-- 글쓰기 페이지 추가
+		1. 글 제목, 글 내용, 비밀번호를 입력해서 비밀번호를 암호화해서 DB에 저장
+		2. 게시글 출력시 비밀번호가 있는 게시글은 비밀번호를 입력하는 팝업창이 뜨면서 비밀번호 입력 시 맞으면 게시글을 보여주고 틀리면 팝업창에 그냥 남아있기
+	 -->
+
+	<th:block layout:fragment="content">
+		<div class="container">
+			<div class="mt-5">
+				<div class="text-center" style="margin: 0 auto; width: 80%;">
+					<p th:text="${summary}"></p>
+					<h1>게시판</h1>
+					<div class="row">
+						<div class="col-md-6 offset-md-3 mb-3">
+							<form action="/board/search" method="post">
+								<div class="form-check form-check-inline mt-2">
+									<input class="form-check-input" type="radio"
+										name="searchOption" id="titleOption" value="title" checked>
+									<label class="form-check-label" for="titleOption">Title</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio"
+										name="searchOption" id="contentOption" value="content">
+									<label class="form-check-label" for="contentOption">Content</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio"
+										name="searchOption" id="titleContentOption"
+										value="titleContent"> <label class="form-check-label"
+										for="titleContentOption">Title + Content</label>
+								</div>
+								<div class="input-group">
+									<input type="text" class="form-control" name="search">
+									<div class="input-group-append">
+										<button class="btn btn-outline-success" type="submit">Search</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<table class="table table-striped">
+				<thead class="table-primary">
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Title</th>
+						<th scope="col">Content</th>
+						<th scope="col">Create Date</th>
+						<th scope="col">Modify Date</th>
+					</tr>
+				</thead>
+				<tbody th:each="board:${boardList}">
+					<tr>
+						<th scope="row" th:text="${board.no}"></th>
+						<td><a th:href="@{/board/${board.title}}"
+							th:text="${board.title}"></a></td>
+						<td th:text="${board.content}"></td>
+						<td th:text="${board.createDate}"></td>
+						<td th:text="${board.modifyDate}"></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<!--  페이지네이션 처리 -->
+			<nav aria-label="Page navigation">
+				<ul class="pagination justify-content-center">
+					<!-- 이전 
+					Page객체 속성 중에서 현재 페이지가 첫 번째 페이지인지 확인 해주는 키워드
+					true (첫 번째 페이지 맞으면)
+					false (첫 번째 페이지 아니면)
+						first 키워드를 작성하면 자동으로 boolean isFirst()가 호출
+				-->
+					<li th:class="${page.first} ? 'page-item disabled' : 'page-item'">
+						<a class="page-link"
+						th:href="@{${#httpServletRequest.requestURI}(page=0)}">&laquo;</a>
+					</li>
+					<!-- 숫자버튼 -->
+					<li th:each="i : ${#numbers.sequence(0, page.totalPages)}"
+						th:class="${page.number == i} ? 'page-item active':'page-item'">
+						<a class="page-link"
+						th:href="@{${#httpServletRequest.requestURI}(page=${i})}"
+						th:text="${i + 1}"></a>
+					</li>
+					<!-- 이후 -->
+					<li th:class="${page.last} ? 'page-item disabled' : 'page-item'">
+						<a class="page-link"
+						th:href="@{${#httpServletRequest.requestURI}(page=${page.totalPages-1})}">&raquo;</a>
+					</li>
+				</ul>
+			</nav>
+
+		</div>
+	</th:block>
+</body>
+<th:block th:replace="/layout/footer1 :: footerLayout"></th:block>
+</html>
+
+<!-- 
+	#httpServletRequest.requestURI
+	: 타임리프에서 제공하는 객체
+	- httpServcletRequest 현재 요청의 URI를 가져옴
+	- 현재 페이지의 URL을 얻는 역할이다
+	URL에 쿼리?page=번호
+	현재 페이지 번호는 i가 가지고 있다.
+ -->

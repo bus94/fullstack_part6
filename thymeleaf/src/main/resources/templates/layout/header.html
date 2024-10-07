@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div th:fragment="headerContent">
+		<header>
+			<h1>타임리프 웹사이트 구현</h1>
+			<nav>
+				<ul>
+					<li>
+						<a th:href="@{/home}">Home</a>
+					</li>
+					<li>
+						<a th:href="@{/about}">About</a>
+					</li>
+					<li>
+						<a th:href="@{/content}">Content</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+	</div>
+</body>
+</html>

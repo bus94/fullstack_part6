@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>thymeleafEx4.html</title>
+</head>
+<body>
+	<h1>타임리프 반복문!</h1>
+	<!--  
+		th:each 속성을 이용해서 반복
+		배열, 리스트, 맵, set 등의 자바 모든 컬렉션 타입은 가능하다.
+		
+		th:each="변수명:${여러개를 저장하는 변수}"
+		th:text="${변수명}"
+	 -->
+	 
+	 <!-- asdf만 출력 안하고 나머지 모두 출력하기 -->
+	 <ul>
+	 	<li th:each="item:${items}" th:if="${item != 'asdf'}" th:text="${item}"></li>
+	 </ul>
+	 
+	 <h3>리스트 가져와서 리스트 안의 데이터가 있다면 반복 이용해서 출력, 없다면 데이터가 비었다 출력</h3>
+	 
+	 <!-- isEmpty() : 객체 안의 데이터가 있는지 없는지 확인 (null은 객체가 존재하는지를 확인하기 때문에 데이터가 없어도 객체가 생성되었다면 null이 아니다)
+	 타임리프에서 리스트와 관련된 여러 가지 유용한 메서드를 제공하는 객체
+	 #lists.isEmpty(변수명) : 해당 리스트가 비었는지 확인
+	 #lists.size(변수명) : 해당 리스트의 크기 확인
+	 # contains(list, value) : 리스트의 특정 value값이 포함되어있는지 확인
+	 # add(list, value)
+	 # remove(list, value) 
+	 
+	 # strings : 문자와 관련된 처리를 하는 객체
+	 # dates : 날짜 시간 관련된 처리를 하는 객체
+	 # numbers : 숫자와 관련된 처리를 하는 객체
+	  -->
+	  <!--  ! (not) : 결과 뒤집기 
+	  	리스트 안에 비어있지 않다면 데이터를 출력
+	  -->
+	 <ul th:if="${!#lists.isEmpty(items)}">
+	 	<li th:each="item:${items}" th:text="${item}"></li>
+	 </ul>
+	 <p th:if="${#lists.isEmpty(items)}">
+	 	items의 데이터가 비어있습니다.
+	 </p>
+	 
+	 <ul th:if="${!#lists.isEmpty(items2)}">
+	 	<li th:each="item2:${items2}" th:text="${item2}"></li>
+	 </ul>
+	 <p th:if="${#lists.isEmpty(items2)}">
+	 	items2의 데이터가 비어있습니다.
+	 </p>
+	 
+	 <h3>map 구조 반복</h3>
+	 <ul>
+	 	<li th:each="entry:${map2}" th:text="${entry}">
+	 		<span th:text="'key:' + ${entry.key}"></span>
+	 		<span th:text="'value:' + ${entry.value}"></span>
+	 	</li>
+	 </ul>
+</body>
+</html>

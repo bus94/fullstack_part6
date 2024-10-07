@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>main.html</title>
+<link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+	<h1>타임리프 include</h1>
+	<!-- header include 
+	th:replace="경로::th:fragment파일명"
+	-->
+	<div th:replace="../layout/header::headerContent">
+		
+	</div>	
+	<!-- 속성 변경
+	타임리프에서 속성변경은 html 요소의 속성을 동적으로 변경하거나 추가하는 기능
+	속성 변경은 주로 링크, 이미지 소스, 클래스, 스타일 등 html 속성을 동적으로 조작이 가능하다.
+	
+	링크 th:href
+		href="value1" th:href="value2"
+		
+	url 링크 표현식 @{...}
+	localhost:서버포트번호 /url링크표현식
+	 -->
+	 
+	 <h3>이미지 경로 포함</h3>
+	 <img alt="image" th:src="@{/images/5.jpg}">
+	 
+	 <div th:replace="../layout/footer::footerContent">
+		
+	</div>	
+	 <script th:src="@{/js/main.js}"></script>
+</body>
+</html>
